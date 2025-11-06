@@ -72,6 +72,7 @@ public class HiringResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Operation(summary = "hiring", description = "")
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public Response createResource_hiring(@Context HttpHeaders httpHeaders, @Context UriInfo uriInfo, @QueryParam("businessKey") @DefaultValue("") String businessKey, @jakarta.validation.Valid() @jakarta.validation.constraints.NotNull() HiringModelInput resource) {
         ProcessInstance<HiringModel> pi = processService.createProcessInstance(process, businessKey, Optional.ofNullable(resource).orElse(new HiringModelInput()).toModel(), httpHeaders.getRequestHeaders(), httpHeaders.getHeaderString("X-KOGITO-StartFromNode"), null, httpHeaders.getHeaderString("X-KOGITO-ReferenceId"), null);
         return Response.created(uriInfo.getAbsolutePathBuilder().path(pi.id()).build()).entity(pi.checkError().variables().toModel()).build();
@@ -81,6 +82,7 @@ public class HiringResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "hiring", description = "")
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public List<HiringModelOutput> getResources_hiring() {
         return processService.getProcessInstanceOutput(process);
     }
@@ -90,6 +92,7 @@ public class HiringResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "hiring", description = "")
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public Map<String, Object> getResourceSchema_hiring() {
         return JsonSchemaUtil.load(this.getClass().getClassLoader(), process.id());
     }
@@ -99,6 +102,7 @@ public class HiringResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "hiring", description = "")
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public HiringModelOutput getResource_hiring(@PathParam("id") String id) {
         return processService.findById(process, id).orElseThrow(NotFoundException::new);
     }
@@ -108,6 +112,7 @@ public class HiringResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "hiring", description = "")
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public HiringModelOutput deleteResource_hiring(@PathParam("id") final String id) {
         return processService.delete(process, id).orElseThrow(NotFoundException::new);
     }
@@ -118,6 +123,7 @@ public class HiringResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "hiring", description = "")
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public HiringModelOutput updateModel_hiring(@PathParam("id") String id, @jakarta.validation.Valid() @jakarta.validation.constraints.NotNull() HiringModelInput resource) {
         return processService.update(process, id, resource.toModel()).orElseThrow(NotFoundException::new);
     }
@@ -128,6 +134,7 @@ public class HiringResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "hiring", description = "")
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public HiringModelOutput updateModelPartial_hiring(@PathParam("id") String id, @jakarta.validation.Valid() @jakarta.validation.constraints.NotNull() HiringModelInput resource) {
         return processService.updatePartial(process, id, resource.toModel()).orElseThrow(NotFoundException::new);
     }
@@ -137,6 +144,7 @@ public class HiringResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "hiring", description = "")
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public List<TaskModel> getTasks_hiring(@PathParam("id") String id, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups) {
         return processService.getWorkItems(process, id, SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups))).orElseThrow(NotFoundException::new).stream().map(org.kie.kogito.hr.Hiring_TaskModelFactory::from).collect(Collectors.toList());
     }
@@ -146,6 +154,7 @@ public class HiringResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public HiringModelOutput completeTask_ITInterview_0(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("phase") @DefaultValue("complete") final String phase, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups, final org.kie.kogito.hr.Hiring__8962C15F_55EC_46F7_B926_5D5A1FD8D35E_TaskOutput model) {
         return processService.transitionWorkItem(process, id, taskId, phase, SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)), model).orElseThrow(NotFoundException::new);
     }
@@ -154,6 +163,7 @@ public class HiringResource {
     @Path("/{id}/ITInterview/{taskId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public org.kie.kogito.hr.Hiring__8962C15F_55EC_46F7_B926_5D5A1FD8D35E_TaskOutput saveTask_ITInterview_0(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups, final org.kie.kogito.hr.Hiring__8962C15F_55EC_46F7_B926_5D5A1FD8D35E_TaskOutput model) {
         return processService.setWorkItemOutput(process, id, taskId, SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)), model, org.kie.kogito.hr.Hiring__8962C15F_55EC_46F7_B926_5D5A1FD8D35E_TaskOutput::fromMap).orElseThrow(NotFoundException::new);
     }
@@ -163,6 +173,7 @@ public class HiringResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public HiringModelOutput taskTransition_ITInterview_0(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @PathParam("phase") final String phase, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups, final org.kie.kogito.hr.Hiring__8962C15F_55EC_46F7_B926_5D5A1FD8D35E_TaskOutput model) {
         return processService.transitionWorkItem(process, id, taskId, phase, SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)), model).orElseThrow(NotFoundException::new);
     }
@@ -171,6 +182,7 @@ public class HiringResource {
     @Path("/{id}/ITInterview/{taskId}")
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public org.kie.kogito.hr.Hiring__8962C15F_55EC_46F7_B926_5D5A1FD8D35E_TaskModel getWorkItem_ITInterview_0(@PathParam("id") String id, @PathParam("taskId") String taskId, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups) {
         return processService.getWorkItem(process, id, taskId, SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)), org.kie.kogito.hr.Hiring__8962C15F_55EC_46F7_B926_5D5A1FD8D35E_TaskModel::from).orElseThrow(NotFoundException::new);
     }
@@ -179,6 +191,7 @@ public class HiringResource {
     @Path("/{id}/ITInterview/{taskId}")
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public HiringModelOutput abortTask_ITInterview_0(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("phase") @DefaultValue("abort") final String phase, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups) {
         return processService.transitionWorkItem(process, id, taskId, phase, SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)), null).orElseThrow(NotFoundException::new);
     }
@@ -187,6 +200,7 @@ public class HiringResource {
     @Path("ITInterview/schema")
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public Map<String, Object> getSchema_ITInterview_0() {
         return JsonSchemaUtil.load(this.getClass().getClassLoader(), process.id(), "ITInterview");
     }
@@ -195,6 +209,7 @@ public class HiringResource {
     @Path("/{id}/ITInterview/{taskId}/schema")
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public Map<String, Object> getSchemaAndPhases_ITInterview_0(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups) {
         return processService.getWorkItemSchemaAndPhases(process, id, taskId, "ITInterview", SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)));
     }
@@ -204,6 +219,7 @@ public class HiringResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public HiringModelOutput completeTask_HRInterview_1(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("phase") @DefaultValue("complete") final String phase, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups, final org.kie.kogito.hr.Hiring__B8C4F63C_81AD_4291_9C1B_84967277EEF6_TaskOutput model) {
         return processService.transitionWorkItem(process, id, taskId, phase, SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)), model).orElseThrow(NotFoundException::new);
     }
@@ -212,6 +228,7 @@ public class HiringResource {
     @Path("/{id}/HRInterview/{taskId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public org.kie.kogito.hr.Hiring__B8C4F63C_81AD_4291_9C1B_84967277EEF6_TaskOutput saveTask_HRInterview_1(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups, final org.kie.kogito.hr.Hiring__B8C4F63C_81AD_4291_9C1B_84967277EEF6_TaskOutput model) {
         return processService.setWorkItemOutput(process, id, taskId, SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)), model, org.kie.kogito.hr.Hiring__B8C4F63C_81AD_4291_9C1B_84967277EEF6_TaskOutput::fromMap).orElseThrow(NotFoundException::new);
     }
@@ -221,6 +238,7 @@ public class HiringResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public HiringModelOutput taskTransition_HRInterview_1(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @PathParam("phase") final String phase, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups, final org.kie.kogito.hr.Hiring__B8C4F63C_81AD_4291_9C1B_84967277EEF6_TaskOutput model) {
         return processService.transitionWorkItem(process, id, taskId, phase, SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)), model).orElseThrow(NotFoundException::new);
     }
@@ -229,6 +247,7 @@ public class HiringResource {
     @Path("/{id}/HRInterview/{taskId}")
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public org.kie.kogito.hr.Hiring__B8C4F63C_81AD_4291_9C1B_84967277EEF6_TaskModel getWorkItem_HRInterview_1(@PathParam("id") String id, @PathParam("taskId") String taskId, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups) {
         return processService.getWorkItem(process, id, taskId, SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)), org.kie.kogito.hr.Hiring__B8C4F63C_81AD_4291_9C1B_84967277EEF6_TaskModel::from).orElseThrow(NotFoundException::new);
     }
@@ -237,6 +256,7 @@ public class HiringResource {
     @Path("/{id}/HRInterview/{taskId}")
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public HiringModelOutput abortTask_HRInterview_1(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("phase") @DefaultValue("abort") final String phase, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups) {
         return processService.transitionWorkItem(process, id, taskId, phase, SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)), null).orElseThrow(NotFoundException::new);
     }
@@ -245,6 +265,7 @@ public class HiringResource {
     @Path("HRInterview/schema")
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public Map<String, Object> getSchema_HRInterview_1() {
         return JsonSchemaUtil.load(this.getClass().getClassLoader(), process.id(), "HRInterview");
     }
@@ -253,6 +274,7 @@ public class HiringResource {
     @Path("/{id}/HRInterview/{taskId}/schema")
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public Map<String, Object> getSchemaAndPhases_HRInterview_1(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups) {
         return processService.getWorkItemSchemaAndPhases(process, id, taskId, "HRInterview", SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)));
     }

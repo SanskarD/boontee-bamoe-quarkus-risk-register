@@ -1,4 +1,4 @@
-/**
+/*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -41,7 +41,7 @@ public class ProjectRuntime implements KieRuntimeBuilder {
     private static java.util.Map<String, KieBase> initKieBases() {
         java.util.Map<String, KieBase> kbaseMap = new ConcurrentHashMap<>();
         if (Drools.isNativeImage()) {
-            kbaseMap.put("defaultKieBase", KieBaseBuilder.createKieBaseFromModel(model.getModelsForKieBase("defaultKieBase"), model.getKieModuleModel().getKieBaseModels().get("defaultKieBase")));
+            kbaseMap.put("defaultKieBase", KieBaseBuilder.createKieBaseFromModel(model.getModelsForKieBase("defaultKieBase"), model.getKieModuleModel().getKieBaseModels().get("defaultKieBase"), model.getKieModuleModel()));
         }
         return kbaseMap;
     }
@@ -53,7 +53,7 @@ public class ProjectRuntime implements KieRuntimeBuilder {
 
     @Override
     public KieBase getKieBase(String name) {
-        return kbases.computeIfAbsent(name, n -> KieBaseBuilder.createKieBaseFromModel(model.getModelsForKieBase(n), model.getKieModuleModel().getKieBaseModels().get(n)));
+        return kbases.computeIfAbsent(name, n -> KieBaseBuilder.createKieBaseFromModel(model.getModelsForKieBase(n), model.getKieModuleModel().getKieBaseModels().get(n), model.getKieModuleModel()));
     }
 
     @Override

@@ -18,10 +18,8 @@
  */
 package org.kie.kogito.app;
 
-import org.jbpm.workflow.instance.impl.WorkflowProcessInstanceImpl;
 import org.kie.kogito.Model;
 import org.kie.kogito.handler.ExceptionHandler;
-import org.kie.kogito.process.MutableProcessInstances;
 import org.kie.kogito.process.ProcessInstanceExecutionException;
 import org.kie.kogito.process.Processes;
 import org.kie.kogito.process.impl.AbstractProcessInstance;
@@ -49,7 +47,7 @@ public class ExceptionHandlerTransaction implements ExceptionHandler {
     @Override
     @Transactional(value = TxType.REQUIRES_NEW)
     public void handle(Exception th) {
-        if (processesContainer.isResolvable()) {
+        if (!processesContainer.isResolvable()) {
             return;
         }
         Processes processes = processesContainer.get();
@@ -61,8 +59,10 @@ public class ExceptionHandlerTransaction implements ExceptionHandler {
                 processes.processByProcessInstanceId(processInstanceId).ifPresent(processDefinition -> {
                     processDefinition.instances().findById(processInstanceId).ifPresent(instance -> {
                         AbstractProcessInstance<? extends Model> processInstance = ((AbstractProcessInstance<? extends Model>) instance);
-                        ((WorkflowProcessInstanceImpl) processInstance.internalGetProcessInstance()).internalSetError(processInstanceExecutionException);
-                        ((MutableProcessInstances) processDefinition.instances()).update(processInstanceId, processInstance);
+                        processInstance.executeInWorkflowProcessInstanceWrite(pi -> {
+                            pi.internalSetError(processInstanceExecutionException);
+                            return null;
+                        });
                     });
                 });
                 return null;

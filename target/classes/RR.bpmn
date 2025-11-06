@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" namespace="https://kie.org/bpmn/_94031C09-9A15-483C-83CC-300604C27947" id="_03AAE2D6-D2DD-4114-8C67-5239A3DA7A0B" name="BPMN_012D96C8-DE01-40B2-BCD7-D674AEBE3678">
-  <process id="_154F3348-0775-4F4C-B0F3-DD5B3F86F06C">
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" namespace="https://kie.org/bpmn/_94031C09-9A15-483C-83CC-300604C27947" id="_03AAE2D6-D2DD-4114-8C67-5239A3DA7A0B" name="BPMN_012D96C8-DE01-40B2-BCD7-D674AEBE3678" targetNamespace="http://www.omg.org/bpmn20">
+  <itemDefinition id="_6C5D2510-468F-414A-91AE-9A6FE97734D6" structureRef="riskregister.model.PrimaryRiskInfo" />
+  <itemDefinition id="_88DD4321-FBB6-4DB2-A055-BFD41CA97E41" structureRef="riskregister.model.Reason" />
+  <itemDefinition id="_9E8FE320-7D52-4511-8FF0-17EE5A6EA9A2" structureRef="riskregister.model.ResidualRisk" />
+  <itemDefinition id="_DD40C460-10C4-479D-B82D-A47C168BF80F" structureRef="riskregister.model.RiskCategory" />
+  <itemDefinition id="_3D8E57F5-4029-433D-BBA4-0C4C64A25508" structureRef="riskregister.model.RiskControlMeasure" />
+  <itemDefinition id="_4517EF33-52BA-4429-A6E1-BEBCA977125F" structureRef="riskregister.model.RiskRegister" />
+  <process id="RiskRegisterProcess" name="RiskRegisterProcess" drools:packageName="riskregister.process" drools:version="1.0">
+    <extensionElements>
+    </extensionElements>
+    <property id="_AE8DCE52-AC9B-48C2-A96C-7148F3EB8303" name="riskRegister" itemSubjectRef="_4517EF33-52BA-4429-A6E1-BEBCA977125F" />
     <laneSet id="_B576740E-B4F6-4689-8A95-21D20385DC47">
       <lane id="_642F15CA-E5A5-4658-9738-D7E73B8EB295" name="RO" />
       <lane id="_894A15C9-461D-4A80-A59A-A288CA766D9F" name="RMD">
@@ -96,10 +105,8 @@
       <outgoing>_795229A1-A22A-4EB4-AF49-77E369E49985</outgoing>
       <outgoing>_D7F5C003-3751-4C43-AE44-8175C80BE005</outgoing>
       <ioSpecification id="_2A83AD09-AB05-497F-A4BF-639128965957">
-        <inputSet id="_94780530-BC43-45D1-AAC4-8130D4504214">
-        </inputSet>
-        <outputSet id="_57C02F3B-C757-4AC5-A3EF-775A6F4DEC21">
-        </outputSet>
+        <inputSet id="_94780530-BC43-45D1-AAC4-8130D4504214" />
+        <outputSet id="_57C02F3B-C757-4AC5-A3EF-775A6F4DEC21" />
       </ioSpecification>
     </scriptTask>
     <scriptTask id="_A73C6F1E-9D94-4734-8B96-6C413A67B347" name="Mark Process for Review">
@@ -114,10 +121,8 @@
       <outgoing>_98220DEE-7800-45A9-9CBF-B1ABE37ECE05</outgoing>
       <outgoing>_23E36111-18BE-4010-86A0-3F056BA17EF2</outgoing>
       <ioSpecification id="_BB9B901A-8C47-493F-B2EF-03EC8E29D317">
-        <inputSet id="_8143EE4F-E21A-4337-85EB-14FD368812A3">
-        </inputSet>
-        <outputSet id="_CAD9B0A2-F638-4E16-BEBF-5599110FEF18">
-        </outputSet>
+        <inputSet id="_8143EE4F-E21A-4337-85EB-14FD368812A3" />
+        <outputSet id="_CAD9B0A2-F638-4E16-BEBF-5599110FEF18" />
       </ioSpecification>
     </scriptTask>
     <scriptTask id="_F222CB4E-A07A-409D-9F65-AC1790C5293F" name="Mark Process for Review">
@@ -132,10 +137,8 @@
       <outgoing>_0769584A-7E63-443E-8A80-14648CAF8B30</outgoing>
       <outgoing>_FF2F5065-D898-4E0F-A27E-36083B32BC85</outgoing>
       <ioSpecification id="_63155894-8C14-4493-9097-3C6F272C03AA">
-        <inputSet id="_95B5133D-2869-40AA-BF19-01321F209D27">
-        </inputSet>
-        <outputSet id="_91B08A37-3755-4B3F-9174-9EA955F090B7">
-        </outputSet>
+        <inputSet id="_95B5133D-2869-40AA-BF19-01321F209D27" />
+        <outputSet id="_91B08A37-3755-4B3F-9174-9EA955F090B7" />
       </ioSpecification>
     </scriptTask>
     <sequenceFlow id="_3B74DA92-2E33-4655-92BD-E0529A7FFD9D" sourceRef="_DE0A504F-8E6A-4BD7-8000-5DFFF2191422" targetRef="_9477168A-A2C7-4290-A4E2-BAC5F30BB0F3" />
@@ -189,10 +192,8 @@
       <outgoing>_8E36199E-6FBF-4818-97C0-EB9D47D7EE53</outgoing>
       <outgoing>_D129D052-ED50-4D11-9F52-FA98CD18CC6B</outgoing>
       <ioSpecification id="_EA9779F4-DDE4-4E9F-BE7A-4AE94FF12FA5">
-        <inputSet id="_D36E307E-F915-4B67-8FFF-EDFBD7DB60B9">
-        </inputSet>
-        <outputSet id="_040EFC95-C161-438A-BDCB-704618637B5B">
-        </outputSet>
+        <inputSet id="_D36E307E-F915-4B67-8FFF-EDFBD7DB60B9" />
+        <outputSet id="_040EFC95-C161-438A-BDCB-704618637B5B" />
       </ioSpecification>
     </userTask>
     <userTask id="_86C40E52-AF78-4A55-BD9A-1FA862FAAEA6" name="HOD Approve">
@@ -200,20 +201,16 @@
       <outgoing>_700097AD-367C-43D4-9F32-C0FF29378D2E</outgoing>
       <outgoing>_D2F8F99E-BA9B-4D5A-829C-D10733E51485</outgoing>
       <ioSpecification id="_A5474792-A292-4CE5-9A1D-BF4F9F3F5A5C">
-        <inputSet id="_8A2B96A9-14AA-409A-B335-3C9BC9A7DA10">
-        </inputSet>
-        <outputSet id="_B8B7C986-3BD4-439B-9A38-EC46FC9937B7">
-        </outputSet>
+        <inputSet id="_8A2B96A9-14AA-409A-B335-3C9BC9A7DA10" />
+        <outputSet id="_B8B7C986-3BD4-439B-9A38-EC46FC9937B7" />
       </ioSpecification>
     </userTask>
     <userTask id="_3F8D7AD6-3245-49F1-B287-8CF8A18AE0B7" name="RMD Verify RR">
       <incoming>_D2F8F99E-BA9B-4D5A-829C-D10733E51485</incoming>
       <outgoing>_60261F81-B054-48FB-8C6B-D0D115CF0B2C</outgoing>
       <ioSpecification id="_EA7C5191-A0FC-40DF-96DD-3D0E99DCFCF0">
-        <inputSet id="_3A48B8B0-7B2B-4572-87BD-9A7A7EDC59A1">
-        </inputSet>
-        <outputSet id="_529B03CE-313F-43DE-AE04-124ECBFD4550">
-        </outputSet>
+        <inputSet id="_3A48B8B0-7B2B-4572-87BD-9A7A7EDC59A1" />
+        <outputSet id="_529B03CE-313F-43DE-AE04-124ECBFD4550" />
       </ioSpecification>
     </userTask>
     <userTask id="_DB6511C3-530F-4D9B-B789-1D8DC62AEE70" name="Maker Submit RR">
@@ -234,10 +231,24 @@
       <outgoing>_A3853CEC-CF40-4936-B6EA-EA7518D9DB80</outgoing>
       <outgoing>_1A72792D-38E0-431F-8FE8-114EB25E0E4E</outgoing>
       <outgoing>_BB414D29-4903-446F-B495-814457081197</outgoing>
-      <ioSpecification id="_6DB710AB-29A4-48E3-B836-AB4B461BCE4B">
-        <inputSet id="_D3CA951C-AEC0-4218-8D0C-FE508CB8EEFD" />
-        <outputSet id="_1E09D84B-3BE5-4081-BD11-FC53B4A10053" />
+      <ioSpecification id="_1FDE2505-E862-4935-AFED-F9BA2495D750">
+        <dataInput id="_67EFD7E5-AEA6-42C5-9A74-EBDE892AEA56" name="riskRegister" drools:dtype="riskregister.model.RiskRegister" itemSubjectRef="_4517EF33-52BA-4429-A6E1-BEBCA977125F" />
+        <dataOutput name="riskRegister" id="_5D901F02-A826-4683-AA8E-E66B2FA50A73" drools:dtype="riskregister.model.RiskRegister" itemSubjectRef="_4517EF33-52BA-4429-A6E1-BEBCA977125F" />
+        <inputSet id="_ECA7CFD6-9B4F-4853-9159-CA55DBD6AF0B">
+          <dataInputRefs>_67EFD7E5-AEA6-42C5-9A74-EBDE892AEA56</dataInputRefs>
+        </inputSet>
+        <outputSet id="_8C7E09DF-7CD3-46A2-991D-CBFD43A67C2C">
+          <dataOutputRefs>_5D901F02-A826-4683-AA8E-E66B2FA50A73</dataOutputRefs>
+        </outputSet>
       </ioSpecification>
+      <dataInputAssociation id="_9B65F9E4-D7E0-4294-91F0-270B7DE5C90C">
+        <sourceRef>_AE8DCE52-AC9B-48C2-A96C-7148F3EB8303</sourceRef>
+        <targetRef>_67EFD7E5-AEA6-42C5-9A74-EBDE892AEA56</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation id="_0E81E2C6-E9E3-4CAA-9ABE-B62D8FA39406">
+        <sourceRef>_5D901F02-A826-4683-AA8E-E66B2FA50A73</sourceRef>
+        <targetRef>_AE8DCE52-AC9B-48C2-A96C-7148F3EB8303</targetRef>
+      </dataOutputAssociation>
     </userTask>
     <userTask id="_DE0A504F-8E6A-4BD7-8000-5DFFF2191422" name="Div Head Verify RR">
       <extensionElements>

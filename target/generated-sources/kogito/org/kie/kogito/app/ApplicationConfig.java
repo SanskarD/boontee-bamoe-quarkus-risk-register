@@ -25,6 +25,6 @@ public class ApplicationConfig extends org.kie.kogito.StaticConfig {
 
     @jakarta.inject.Inject
     public ApplicationConfig(Instance<org.kie.kogito.KogitoConfig> configs) {
-        init(new org.kie.kogito.Addons(java.util.Set.of("jdbc-persistence", "process-management", "process-svg", "source-files", "jobs-management")), configs);
+        init(new org.kie.kogito.Addons(java.util.Set.of("jdbc-persistence", "process-svg", "source-files")), configs);
     }
 }

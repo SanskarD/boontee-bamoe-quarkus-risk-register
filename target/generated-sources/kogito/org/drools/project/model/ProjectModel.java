@@ -8,7 +8,7 @@ public class ProjectModel implements org.drools.modelcompiler.CanonicalKieModule
 
     @Override
     public String getVersion() {
-        return "9.2.0-ibm-0004";
+        return "9.3.0-ibm-0007";
     }
 
     @Override

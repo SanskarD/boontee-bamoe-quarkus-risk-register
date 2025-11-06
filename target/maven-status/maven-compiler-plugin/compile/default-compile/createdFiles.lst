@@ -1,0 +1,6 @@
+riskregister/model/Reason.class
+riskregister/model/ResidualRisk.class
+riskregister/model/RiskControlMeasure.class
+riskregister/model/RiskCategory.class
+riskregister/model/RiskRegister.class
+riskregister/model/PrimaryRiskInfo.class

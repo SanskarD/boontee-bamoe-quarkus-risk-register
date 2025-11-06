@@ -72,7 +72,6 @@ public class UserTasksResource {
     ObjectMapper mapper;
 
     @jakarta.annotation.PostConstruct
-    @jakarta.transaction.Transactional()
     public void init() {
         mapper = objectMapper.copy();
         SimpleModule module = new SimpleModule();
@@ -84,6 +83,7 @@ public class UserTasksResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public List<UserTaskView> list(@QueryParam("user") String user, @QueryParam("group") List<String> groups) {
         return userTaskService.list(identityProviderFactory.getOrImpersonateIdentity(user, groups));
     }
@@ -92,6 +92,7 @@ public class UserTasksResource {
     @Path("/{taskId}")
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public UserTaskView find(@PathParam("taskId") String taskId, @QueryParam("user") String user, @QueryParam("group") List<String> groups) {
         return userTaskService.getUserTaskInstance(taskId, identityProviderFactory.getOrImpersonateIdentity(user, groups)).orElseThrow(UserTaskInstanceNotFoundException::new);
     }
@@ -101,6 +102,7 @@ public class UserTasksResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public UserTaskView transition(@PathParam("taskId") String taskId, @QueryParam("user") String user, @QueryParam("group") List<String> groups, TransitionInfo transitionInfo) {
         return userTaskService.transition(taskId, transitionInfo.getTransitionId(), transitionInfo.getData(), identityProviderFactory.getOrImpersonateIdentity(user, groups)).orElseThrow(UserTaskInstanceNotFoundException::new);
     }
@@ -109,6 +111,7 @@ public class UserTasksResource {
     @Path("/{taskId}/transition")
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public Collection<UserTaskTransitionView> transition(@PathParam("taskId") String taskId, @QueryParam("user") String user, @QueryParam("group") List<String> groups) {
         return userTaskService.allowedTransitions(taskId, identityProviderFactory.getOrImpersonateIdentity(user, groups));
     }
@@ -117,6 +120,7 @@ public class UserTasksResource {
     @Path("/{taskId}/outputs")
     @Consumes(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public UserTaskView setOutput(@PathParam("taskId") String taskId, @QueryParam("user") String user, @QueryParam("group") List<String> groups, String body) throws Exception {
         Map<String, Object> data = mapper.readValue(body, Map.class);
         return userTaskService.setOutputs(taskId, data, identityProviderFactory.getOrImpersonateIdentity(user, groups)).orElseThrow(UserTaskInstanceNotFoundException::new);
@@ -126,6 +130,7 @@ public class UserTasksResource {
     @Path("/{taskId}/inputs")
     @Consumes(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public UserTaskView setInputs(@PathParam("taskId") String taskId, @QueryParam("user") String user, @QueryParam("group") List<String> groups, String body) throws Exception {
         Map<String, Object> data = mapper.readValue(body, Map.class);
         return userTaskService.setInputs(taskId, data, identityProviderFactory.getOrImpersonateIdentity(user, groups)).orElseThrow(UserTaskInstanceNotFoundException::new);
@@ -135,6 +140,7 @@ public class UserTasksResource {
     @Path("/{taskId}/comments")
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public Collection<Comment> getComments(@PathParam("taskId") String taskId, @QueryParam("user") String user, @QueryParam("group") List<String> groups) {
         return userTaskService.getComments(taskId, identityProviderFactory.getOrImpersonateIdentity(user, groups));
     }
@@ -144,6 +150,7 @@ public class UserTasksResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public Comment addComment(@PathParam("taskId") String taskId, @QueryParam("user") String user, @QueryParam("group") List<String> groups, CommentInfo commentInfo) {
         Comment comment = new Comment(null, user);
         comment.setContent(commentInfo.getComment());
@@ -154,6 +161,7 @@ public class UserTasksResource {
     @Path("/{taskId}/comments/{commentId}")
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public Comment getComment(@PathParam("taskId") String taskId, @PathParam("commentId") String commentId, @QueryParam("user") String user, @QueryParam("group") List<String> groups) {
         return userTaskService.getComment(taskId, commentId, identityProviderFactory.getOrImpersonateIdentity(user, groups)).orElseThrow(() -> new UserTaskInstanceNotFoundException("Comment " + commentId + " not found"));
     }
@@ -163,6 +171,7 @@ public class UserTasksResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public Comment updateComment(@PathParam("taskId") String taskId, @PathParam("commentId") String commentId, @QueryParam("user") String user, @QueryParam("group") List<String> groups, CommentInfo commentInfo) {
         Comment comment = new Comment(commentId, user);
         comment.setContent(commentInfo.getComment());
@@ -172,6 +181,7 @@ public class UserTasksResource {
     @DELETE
     @Path("/{taskId}/comments/{commentId}")
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public Comment deleteComment(@PathParam("taskId") String taskId, @PathParam("commentId") String commentId, @QueryParam("user") String user, @QueryParam("group") List<String> groups) {
         return userTaskService.removeComment(taskId, commentId, identityProviderFactory.getOrImpersonateIdentity(user, groups)).orElseThrow(UserTaskInstanceNotFoundException::new);
     }
@@ -180,6 +190,7 @@ public class UserTasksResource {
     @Path("/{taskId}/attachments")
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public Collection<Attachment> getAttachments(@PathParam("taskId") String taskId, @QueryParam("user") String user, @QueryParam("group") List<String> groups) {
         return userTaskService.getAttachments(taskId, identityProviderFactory.getOrImpersonateIdentity(user, groups));
     }
@@ -189,6 +200,7 @@ public class UserTasksResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public Attachment addAttachment(@PathParam("taskId") String taskId, @QueryParam("user") String user, @QueryParam("group") List<String> groups, AttachmentInfo attachmentInfo) {
         Attachment attachment = new Attachment(null, user);
         attachment.setName(attachmentInfo.getName());
@@ -201,6 +213,7 @@ public class UserTasksResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public Attachment updateAttachment(@PathParam("taskId") String taskId, @PathParam("attachmentId") String attachmentId, @QueryParam("user") String user, @QueryParam("group") List<String> groups, AttachmentInfo attachmentInfo) {
         Attachment attachment = new Attachment(attachmentId, user);
         attachment.setName(attachmentInfo.getName());
@@ -211,6 +224,7 @@ public class UserTasksResource {
     @DELETE
     @Path("/{taskId}/attachments/{attachmentId}")
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public Attachment deleteAttachment(@PathParam("taskId") String taskId, @PathParam("attachmentId") String attachmentId, @QueryParam("user") String user, @QueryParam("group") List<String> groups) {
         return userTaskService.removeAttachment(taskId, attachmentId, identityProviderFactory.getOrImpersonateIdentity(user, groups)).orElseThrow(UserTaskInstanceNotFoundException::new);
     }
@@ -219,6 +233,7 @@ public class UserTasksResource {
     @Path("/{taskId}/attachments/{attachmentId}")
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
+    @org.eclipse.microprofile.faulttolerance.Retry()
     public Attachment getAttachment(@PathParam("taskId") String taskId, @PathParam("attachmentId") String attachmentId, @QueryParam("user") String user, @QueryParam("group") List<String> groups) {
         return userTaskService.getAttachment(taskId, attachmentId, identityProviderFactory.getOrImpersonateIdentity(user, groups)).orElseThrow(() -> new UserTaskInstanceNotFoundException("Attachment " + attachmentId + " not found"));
     }

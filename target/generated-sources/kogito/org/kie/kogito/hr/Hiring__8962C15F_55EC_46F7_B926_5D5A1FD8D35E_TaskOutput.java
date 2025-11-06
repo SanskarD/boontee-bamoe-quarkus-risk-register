@@ -21,6 +21,7 @@ package org.kie.kogito.hr;
 import java.util.HashMap;
 import java.util.Map;
 import org.kie.kogito.MapOutput;
+//Task output for user task 'IT Interview' in process 'hiring'
 import org.kie.kogito.UserTask;
 import org.kie.kogito.UserTaskParam.ParamType;
 import org.kie.kogito.UserTaskParam;
@@ -52,4 +53,3 @@ public class Hiring__8962C15F_55EC_46F7_B926_5D5A1FD8D35E_TaskOutput implements 
         this.approve = approve;
     }
 }
-//Task output for user task 'IT Interview' in process 'hiring'

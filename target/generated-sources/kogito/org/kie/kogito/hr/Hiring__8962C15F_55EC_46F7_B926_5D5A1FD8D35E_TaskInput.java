@@ -19,6 +19,7 @@
 package org.kie.kogito.hr;
 
 import java.util.Map;
+//Task input for user task 'IT Interview' in process 'hiring'
 import org.kie.kogito.UserTask;
 import org.kie.kogito.UserTaskParam.ParamType;
 import org.kie.kogito.UserTaskParam;
@@ -91,4 +92,3 @@ public class Hiring__8962C15F_55EC_46F7_B926_5D5A1FD8D35E_TaskInput {
         this.category = category;
     }
 }
-//Task input for user task 'IT Interview' in process 'hiring'
