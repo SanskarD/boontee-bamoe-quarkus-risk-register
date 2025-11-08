@@ -4,3 +4,5 @@ riskregister/model/RiskControlMeasure.class
 riskregister/model/RiskCategory.class
 riskregister/model/RiskRegister.class
 riskregister/model/PrimaryRiskInfo.class
+riskregister/model/ApprovalLog.class
+riskregister/model/Approval.class

@@ -21,12 +21,38 @@ package riskregister.process;
 import java.util.Map;
 //Task input for user task 'HOD Approve' in process 'RiskRegisterProcess'
 import org.kie.kogito.UserTask;
+import org.kie.kogito.UserTaskParam.ParamType;
+import org.kie.kogito.UserTaskParam;
 
 @UserTask(taskName = "HOD Approve", processName = "RiskRegisterProcess")
 public class RiskRegisterProcess__86C40E52_AF78_4A55_BD9A_1FA862FAAEA6_TaskInput {
 
     public static RiskRegisterProcess__86C40E52_AF78_4A55_BD9A_1FA862FAAEA6_TaskInput fromMap(Map<String, Object> params) {
         RiskRegisterProcess__86C40E52_AF78_4A55_BD9A_1FA862FAAEA6_TaskInput item = new RiskRegisterProcess__86C40E52_AF78_4A55_BD9A_1FA862FAAEA6_TaskInput();
+        item.riskRegister = (riskregister.model.RiskRegister) params.get("riskRegister");
+        item.approvalLog = (riskregister.model.ApprovalLog) params.get("approvalLog");
         return item;
+    }
+
+    @UserTaskParam(value = ParamType.INPUT)
+    private riskregister.model.RiskRegister riskRegister;
+
+    public riskregister.model.RiskRegister getRiskRegister() {
+        return riskRegister;
+    }
+
+    public void setRiskRegister(riskregister.model.RiskRegister riskRegister) {
+        this.riskRegister = riskRegister;
+    }
+
+    @UserTaskParam(value = ParamType.INPUT)
+    private riskregister.model.ApprovalLog approvalLog;
+
+    public riskregister.model.ApprovalLog getApprovalLog() {
+        return approvalLog;
+    }
+
+    public void setApprovalLog(riskregister.model.ApprovalLog approvalLog) {
+        this.approvalLog = approvalLog;
     }
 }

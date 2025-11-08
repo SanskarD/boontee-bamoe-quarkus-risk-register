@@ -6,6 +6,26 @@ option kogito_model = "RiskRegisterProcess";
 option kogito_id = "RiskRegisterProcess";
 
 /* @Indexed */ 
+message Approval { 
+	option java_package = "riskregister.model";
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField */ 
+	optional string comment = 1; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField */ 
+	optional kogito.Date date = 2; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField */ 
+	optional string status = 3; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField */ 
+	optional string userId = 4; 
+}
+/* @Indexed */ 
+message ApprovalLog { 
+	option java_package = "riskregister.model";
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField */ 
+	repeated Approval approvals = 1; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField */ 
+	optional string finalStatus = 2; 
+}
+/* @Indexed */ 
 message PrimaryRiskInfo { 
 	option java_package = "riskregister.model";
 	/* @Field(index = Index.YES, store = Store.YES) @SortableField */ 
@@ -94,11 +114,53 @@ message RiskRegister {
 /* @Indexed */ 
 message RiskRegisterProcess { 
 	option java_package = "riskregister.process";
-	/* @Field(index = Index.YES, store = Store.YES) @SortableField */ 
-	optional string id = 1; 
 	/* @Field(index = Index.YES, store = Store.YES) @SortableField
  @VariableInfo(tags="") */ 
-	optional RiskRegister riskRegister = 2; 
+	optional Approval approval = 1; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField
+ @VariableInfo(tags="") */ 
+	optional ApprovalLog approvalLog = 2; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField
+ @VariableInfo(tags="") */ 
+	optional string divHeadUserGroup = 3; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField
+ @VariableInfo(tags="") */ 
+	optional string divHeadUsers = 4; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField
+ @VariableInfo(tags="") */ 
+	optional string hodUsers = 5; 
 	/* @Field(index = Index.YES, store = Store.YES) @SortableField */ 
-	optional org.kie.kogito.index.model.KogitoMetadata metadata = 3; 
+	optional string id = 6; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField
+ @VariableInfo(tags="") */ 
+	optional string jroUsers = 7; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField
+ @VariableInfo(tags="") */ 
+	optional string makerUser = 8; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField
+ @VariableInfo(tags="") */ 
+	optional PrimaryRiskInfo primaryRiskInfo = 9; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField
+ @VariableInfo(tags="") */ 
+	optional Reason reason = 10; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField
+ @VariableInfo(tags="") */ 
+	optional ResidualRisk residualRisk = 11; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField
+ @VariableInfo(tags="") */ 
+	optional RiskCategory riskCategory = 12; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField
+ @VariableInfo(tags="") */ 
+	optional RiskControlMeasure riskControlMeasure = 13; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField
+ @VariableInfo(tags="") */ 
+	optional RiskRegister riskRegister = 14; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField
+ @VariableInfo(tags="") */ 
+	optional string rmdUsers = 15; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField
+ @VariableInfo(tags="") */ 
+	optional string sroUsers = 16; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField */ 
+	optional org.kie.kogito.index.model.KogitoMetadata metadata = 17; 
 }

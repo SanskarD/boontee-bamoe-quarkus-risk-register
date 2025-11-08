@@ -2,6 +2,18 @@ syntax = "proto2";
 package org.kie.kogito.app; 
 import "kogito-types.proto";
 
+message Approval { 
+	option java_package = "riskregister.model";
+	optional string comment = 1; 
+	optional kogito.Date date = 2; 
+	optional string status = 3; 
+	optional string userId = 4; 
+}
+message ApprovalLog { 
+	option java_package = "riskregister.model";
+	repeated Approval approvals = 1; 
+	optional string finalStatus = 2; 
+}
 message PrimaryRiskInfo { 
 	option java_package = "riskregister.model";
 	optional string department = 1; 

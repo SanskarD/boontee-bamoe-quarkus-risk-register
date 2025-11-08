@@ -34,9 +34,9 @@ public class RiskRegisterProcess__DB6511C3_530F_4D9B_B789_1D8DC62AEE70 extends D
     Application application;
 
     public RiskRegisterProcess__DB6511C3_530F_4D9B_B789_1D8DC62AEE70() {
-        super("_DB6511C3-530F-4D9B-B789-1D8DC62AEE70", null);
-        this.setPotentialUsers((java.lang.String) null);
-        this.setPotentialGroups((java.lang.String) null);
+        super("_DB6511C3-530F-4D9B-B789-1D8DC62AEE70", "MakerSubmitRR");
+        this.setPotentialUsers("div1_maker1,div2_maker1,div3_maker2");
+        this.setPotentialGroups("MAKER");
         this.setAdminUsers((java.lang.String) null);
         this.setAdminGroups((java.lang.String) null);
         this.setExcludedUsers((java.lang.String) null);

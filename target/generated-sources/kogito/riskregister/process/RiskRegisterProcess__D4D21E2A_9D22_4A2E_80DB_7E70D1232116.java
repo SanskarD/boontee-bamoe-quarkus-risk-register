@@ -35,8 +35,8 @@ public class RiskRegisterProcess__D4D21E2A_9D22_4A2E_80DB_7E70D1232116 extends D
 
     public RiskRegisterProcess__D4D21E2A_9D22_4A2E_80DB_7E70D1232116() {
         super("_D4D21E2A-9D22-4A2E-80DB-7E70D1232116", null);
-        this.setPotentialUsers((java.lang.String) null);
-        this.setPotentialGroups((java.lang.String) null);
+        this.setPotentialUsers("#{hodUsers}");
+        this.setPotentialGroups("HOD");
         this.setAdminUsers((java.lang.String) null);
         this.setAdminGroups((java.lang.String) null);
         this.setExcludedUsers((java.lang.String) null);

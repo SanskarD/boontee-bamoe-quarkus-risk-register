@@ -34,9 +34,9 @@ public class RiskRegisterProcess__E82B11A3_F055_4091_AB9E_6869B67ACE6E extends D
     Application application;
 
     public RiskRegisterProcess__E82B11A3_F055_4091_AB9E_6869B67ACE6E() {
-        super("_E82B11A3-F055-4091-AB9E-6869B67ACE6E", null);
-        this.setPotentialUsers((java.lang.String) null);
-        this.setPotentialGroups((java.lang.String) null);
+        super("_E82B11A3-F055-4091-AB9E-6869B67ACE6E", "JROVerifyRR");
+        this.setPotentialUsers("#{jroUsers}");
+        this.setPotentialGroups("JRO");
         this.setAdminUsers((java.lang.String) null);
         this.setAdminGroups((java.lang.String) null);
         this.setExcludedUsers((java.lang.String) null);

@@ -24,12 +24,13 @@ import org.kie.kogito.UserTask;
 import org.kie.kogito.UserTaskParam.ParamType;
 import org.kie.kogito.UserTaskParam;
 
-@UserTask(taskName = "Maker Submit RR", processName = "RiskRegisterProcess")
+@UserTask(taskName = "MakerSubmitRR", processName = "RiskRegisterProcess")
 public class RiskRegisterProcess__DB6511C3_530F_4D9B_B789_1D8DC62AEE70_TaskInput {
 
     public static RiskRegisterProcess__DB6511C3_530F_4D9B_B789_1D8DC62AEE70_TaskInput fromMap(Map<String, Object> params) {
         RiskRegisterProcess__DB6511C3_530F_4D9B_B789_1D8DC62AEE70_TaskInput item = new RiskRegisterProcess__DB6511C3_530F_4D9B_B789_1D8DC62AEE70_TaskInput();
         item.riskRegister = (riskregister.model.RiskRegister) params.get("riskRegister");
+        item.approvalLog = (riskregister.model.ApprovalLog) params.get("approvalLog");
         return item;
     }
 
@@ -42,5 +43,16 @@ public class RiskRegisterProcess__DB6511C3_530F_4D9B_B789_1D8DC62AEE70_TaskInput
 
     public void setRiskRegister(riskregister.model.RiskRegister riskRegister) {
         this.riskRegister = riskRegister;
+    }
+
+    @UserTaskParam(value = ParamType.INPUT)
+    private riskregister.model.ApprovalLog approvalLog;
+
+    public riskregister.model.ApprovalLog getApprovalLog() {
+        return approvalLog;
+    }
+
+    public void setApprovalLog(riskregister.model.ApprovalLog approvalLog) {
+        this.approvalLog = approvalLog;
     }
 }

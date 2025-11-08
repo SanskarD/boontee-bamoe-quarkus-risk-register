@@ -27,7 +27,6 @@ public class SourceFilesProviderProducer {
     private static final SourceFilesProviderImpl INSTANCE = new SourceFilesProviderImpl();
 
     static {
-        INSTANCE.addSourceFile("hiring", new SourceFile("Hiring.bpmn"));
         INSTANCE.addSourceFile("RiskRegisterProcess", new SourceFile("RR.bpmn"));
     }
 

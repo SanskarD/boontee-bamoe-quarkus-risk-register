@@ -35,8 +35,8 @@ public class RiskRegisterProcess__3F8D7AD6_3245_49F1_B287_8CF8A18AE0B7 extends D
 
     public RiskRegisterProcess__3F8D7AD6_3245_49F1_B287_8CF8A18AE0B7() {
         super("_3F8D7AD6-3245-49F1-B287-8CF8A18AE0B7", null);
-        this.setPotentialUsers((java.lang.String) null);
-        this.setPotentialGroups((java.lang.String) null);
+        this.setPotentialUsers("#{rmdUsers}");
+        this.setPotentialGroups("RMD");
         this.setAdminUsers((java.lang.String) null);
         this.setAdminGroups((java.lang.String) null);
         this.setExcludedUsers((java.lang.String) null);

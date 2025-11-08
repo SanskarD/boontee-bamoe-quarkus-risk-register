@@ -34,9 +34,9 @@ public class RiskRegisterProcess__DE0A504F_8E6A_4BD7_8000_5DFFF2191422 extends D
     Application application;
 
     public RiskRegisterProcess__DE0A504F_8E6A_4BD7_8000_5DFFF2191422() {
-        super("_DE0A504F-8E6A-4BD7-8000-5DFFF2191422", null);
-        this.setPotentialUsers((java.lang.String) null);
-        this.setPotentialGroups((java.lang.String) null);
+        super("_DE0A504F-8E6A-4BD7-8000-5DFFF2191422", "DivHeadVerifyRR");
+        this.setPotentialUsers("#{divHeadUsers}");
+        this.setPotentialGroups("divHeadUserGroup");
         this.setAdminUsers((java.lang.String) null);
         this.setAdminGroups((java.lang.String) null);
         this.setExcludedUsers((java.lang.String) null);

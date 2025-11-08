@@ -345,198 +345,198 @@ public class RiskRegisterProcessResource {
     }
 
     @POST
-    @Path("/{id}/Maker_Submit_RR/{taskId}")
+    @Path("/{id}/MakerSubmitRR/{taskId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
     @org.eclipse.microprofile.faulttolerance.Retry()
-    public RiskRegisterProcessModelOutput completeTask_Maker_Submit_RR_3(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("phase") @DefaultValue("complete") final String phase, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups, final riskregister.process.RiskRegisterProcess__DB6511C3_530F_4D9B_B789_1D8DC62AEE70_TaskOutput model) {
+    public RiskRegisterProcessModelOutput completeTask_MakerSubmitRR_3(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("phase") @DefaultValue("complete") final String phase, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups, final riskregister.process.RiskRegisterProcess__DB6511C3_530F_4D9B_B789_1D8DC62AEE70_TaskOutput model) {
         return processService.transitionWorkItem(process, id, taskId, phase, SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)), model).orElseThrow(NotFoundException::new);
     }
 
     @PUT
-    @Path("/{id}/Maker_Submit_RR/{taskId}")
+    @Path("/{id}/MakerSubmitRR/{taskId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
     @org.eclipse.microprofile.faulttolerance.Retry()
-    public riskregister.process.RiskRegisterProcess__DB6511C3_530F_4D9B_B789_1D8DC62AEE70_TaskOutput saveTask_Maker_Submit_RR_3(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups, final riskregister.process.RiskRegisterProcess__DB6511C3_530F_4D9B_B789_1D8DC62AEE70_TaskOutput model) {
+    public riskregister.process.RiskRegisterProcess__DB6511C3_530F_4D9B_B789_1D8DC62AEE70_TaskOutput saveTask_MakerSubmitRR_3(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups, final riskregister.process.RiskRegisterProcess__DB6511C3_530F_4D9B_B789_1D8DC62AEE70_TaskOutput model) {
         return processService.setWorkItemOutput(process, id, taskId, SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)), model, riskregister.process.RiskRegisterProcess__DB6511C3_530F_4D9B_B789_1D8DC62AEE70_TaskOutput::fromMap).orElseThrow(NotFoundException::new);
     }
 
     @POST
-    @Path("/{id}/Maker_Submit_RR/{taskId}/phases/{phase}")
+    @Path("/{id}/MakerSubmitRR/{taskId}/phases/{phase}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
     @org.eclipse.microprofile.faulttolerance.Retry()
-    public RiskRegisterProcessModelOutput taskTransition_Maker_Submit_RR_3(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @PathParam("phase") final String phase, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups, final riskregister.process.RiskRegisterProcess__DB6511C3_530F_4D9B_B789_1D8DC62AEE70_TaskOutput model) {
+    public RiskRegisterProcessModelOutput taskTransition_MakerSubmitRR_3(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @PathParam("phase") final String phase, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups, final riskregister.process.RiskRegisterProcess__DB6511C3_530F_4D9B_B789_1D8DC62AEE70_TaskOutput model) {
         return processService.transitionWorkItem(process, id, taskId, phase, SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)), model).orElseThrow(NotFoundException::new);
     }
 
     @GET
-    @Path("/{id}/Maker_Submit_RR/{taskId}")
+    @Path("/{id}/MakerSubmitRR/{taskId}")
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
     @org.eclipse.microprofile.faulttolerance.Retry()
-    public riskregister.process.RiskRegisterProcess__DB6511C3_530F_4D9B_B789_1D8DC62AEE70_TaskModel getWorkItem_Maker_Submit_RR_3(@PathParam("id") String id, @PathParam("taskId") String taskId, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups) {
+    public riskregister.process.RiskRegisterProcess__DB6511C3_530F_4D9B_B789_1D8DC62AEE70_TaskModel getWorkItem_MakerSubmitRR_3(@PathParam("id") String id, @PathParam("taskId") String taskId, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups) {
         return processService.getWorkItem(process, id, taskId, SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)), riskregister.process.RiskRegisterProcess__DB6511C3_530F_4D9B_B789_1D8DC62AEE70_TaskModel::from).orElseThrow(NotFoundException::new);
     }
 
     @DELETE
-    @Path("/{id}/Maker_Submit_RR/{taskId}")
+    @Path("/{id}/MakerSubmitRR/{taskId}")
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
     @org.eclipse.microprofile.faulttolerance.Retry()
-    public RiskRegisterProcessModelOutput abortTask_Maker_Submit_RR_3(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("phase") @DefaultValue("abort") final String phase, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups) {
+    public RiskRegisterProcessModelOutput abortTask_MakerSubmitRR_3(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("phase") @DefaultValue("abort") final String phase, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups) {
         return processService.transitionWorkItem(process, id, taskId, phase, SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)), null).orElseThrow(NotFoundException::new);
     }
 
     @GET
-    @Path("Maker_Submit_RR/schema")
+    @Path("MakerSubmitRR/schema")
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
     @org.eclipse.microprofile.faulttolerance.Retry()
-    public Map<String, Object> getSchema_Maker_Submit_RR_3() {
-        return JsonSchemaUtil.load(this.getClass().getClassLoader(), process.id(), "Maker_Submit_RR");
+    public Map<String, Object> getSchema_MakerSubmitRR_3() {
+        return JsonSchemaUtil.load(this.getClass().getClassLoader(), process.id(), "MakerSubmitRR");
     }
 
     @GET
-    @Path("/{id}/Maker_Submit_RR/{taskId}/schema")
+    @Path("/{id}/MakerSubmitRR/{taskId}/schema")
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
     @org.eclipse.microprofile.faulttolerance.Retry()
-    public Map<String, Object> getSchemaAndPhases_Maker_Submit_RR_3(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups) {
-        return processService.getWorkItemSchemaAndPhases(process, id, taskId, "Maker_Submit_RR", SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)));
+    public Map<String, Object> getSchemaAndPhases_MakerSubmitRR_3(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups) {
+        return processService.getWorkItemSchemaAndPhases(process, id, taskId, "MakerSubmitRR", SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)));
     }
 
     @POST
-    @Path("/{id}/Div_Head_Verify_RR/{taskId}")
+    @Path("/{id}/DivHeadVerifyRR/{taskId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
     @org.eclipse.microprofile.faulttolerance.Retry()
-    public RiskRegisterProcessModelOutput completeTask_Div_Head_Verify_RR_4(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("phase") @DefaultValue("complete") final String phase, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups, final riskregister.process.RiskRegisterProcess__DE0A504F_8E6A_4BD7_8000_5DFFF2191422_TaskOutput model) {
+    public RiskRegisterProcessModelOutput completeTask_DivHeadVerifyRR_4(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("phase") @DefaultValue("complete") final String phase, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups, final riskregister.process.RiskRegisterProcess__DE0A504F_8E6A_4BD7_8000_5DFFF2191422_TaskOutput model) {
         return processService.transitionWorkItem(process, id, taskId, phase, SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)), model).orElseThrow(NotFoundException::new);
     }
 
     @PUT
-    @Path("/{id}/Div_Head_Verify_RR/{taskId}")
+    @Path("/{id}/DivHeadVerifyRR/{taskId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
     @org.eclipse.microprofile.faulttolerance.Retry()
-    public riskregister.process.RiskRegisterProcess__DE0A504F_8E6A_4BD7_8000_5DFFF2191422_TaskOutput saveTask_Div_Head_Verify_RR_4(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups, final riskregister.process.RiskRegisterProcess__DE0A504F_8E6A_4BD7_8000_5DFFF2191422_TaskOutput model) {
+    public riskregister.process.RiskRegisterProcess__DE0A504F_8E6A_4BD7_8000_5DFFF2191422_TaskOutput saveTask_DivHeadVerifyRR_4(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups, final riskregister.process.RiskRegisterProcess__DE0A504F_8E6A_4BD7_8000_5DFFF2191422_TaskOutput model) {
         return processService.setWorkItemOutput(process, id, taskId, SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)), model, riskregister.process.RiskRegisterProcess__DE0A504F_8E6A_4BD7_8000_5DFFF2191422_TaskOutput::fromMap).orElseThrow(NotFoundException::new);
     }
 
     @POST
-    @Path("/{id}/Div_Head_Verify_RR/{taskId}/phases/{phase}")
+    @Path("/{id}/DivHeadVerifyRR/{taskId}/phases/{phase}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
     @org.eclipse.microprofile.faulttolerance.Retry()
-    public RiskRegisterProcessModelOutput taskTransition_Div_Head_Verify_RR_4(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @PathParam("phase") final String phase, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups, final riskregister.process.RiskRegisterProcess__DE0A504F_8E6A_4BD7_8000_5DFFF2191422_TaskOutput model) {
+    public RiskRegisterProcessModelOutput taskTransition_DivHeadVerifyRR_4(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @PathParam("phase") final String phase, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups, final riskregister.process.RiskRegisterProcess__DE0A504F_8E6A_4BD7_8000_5DFFF2191422_TaskOutput model) {
         return processService.transitionWorkItem(process, id, taskId, phase, SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)), model).orElseThrow(NotFoundException::new);
     }
 
     @GET
-    @Path("/{id}/Div_Head_Verify_RR/{taskId}")
+    @Path("/{id}/DivHeadVerifyRR/{taskId}")
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
     @org.eclipse.microprofile.faulttolerance.Retry()
-    public riskregister.process.RiskRegisterProcess__DE0A504F_8E6A_4BD7_8000_5DFFF2191422_TaskModel getWorkItem_Div_Head_Verify_RR_4(@PathParam("id") String id, @PathParam("taskId") String taskId, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups) {
+    public riskregister.process.RiskRegisterProcess__DE0A504F_8E6A_4BD7_8000_5DFFF2191422_TaskModel getWorkItem_DivHeadVerifyRR_4(@PathParam("id") String id, @PathParam("taskId") String taskId, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups) {
         return processService.getWorkItem(process, id, taskId, SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)), riskregister.process.RiskRegisterProcess__DE0A504F_8E6A_4BD7_8000_5DFFF2191422_TaskModel::from).orElseThrow(NotFoundException::new);
     }
 
     @DELETE
-    @Path("/{id}/Div_Head_Verify_RR/{taskId}")
+    @Path("/{id}/DivHeadVerifyRR/{taskId}")
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
     @org.eclipse.microprofile.faulttolerance.Retry()
-    public RiskRegisterProcessModelOutput abortTask_Div_Head_Verify_RR_4(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("phase") @DefaultValue("abort") final String phase, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups) {
+    public RiskRegisterProcessModelOutput abortTask_DivHeadVerifyRR_4(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("phase") @DefaultValue("abort") final String phase, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups) {
         return processService.transitionWorkItem(process, id, taskId, phase, SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)), null).orElseThrow(NotFoundException::new);
     }
 
     @GET
-    @Path("Div_Head_Verify_RR/schema")
+    @Path("DivHeadVerifyRR/schema")
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
     @org.eclipse.microprofile.faulttolerance.Retry()
-    public Map<String, Object> getSchema_Div_Head_Verify_RR_4() {
-        return JsonSchemaUtil.load(this.getClass().getClassLoader(), process.id(), "Div_Head_Verify_RR");
+    public Map<String, Object> getSchema_DivHeadVerifyRR_4() {
+        return JsonSchemaUtil.load(this.getClass().getClassLoader(), process.id(), "DivHeadVerifyRR");
     }
 
     @GET
-    @Path("/{id}/Div_Head_Verify_RR/{taskId}/schema")
+    @Path("/{id}/DivHeadVerifyRR/{taskId}/schema")
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
     @org.eclipse.microprofile.faulttolerance.Retry()
-    public Map<String, Object> getSchemaAndPhases_Div_Head_Verify_RR_4(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups) {
-        return processService.getWorkItemSchemaAndPhases(process, id, taskId, "Div_Head_Verify_RR", SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)));
+    public Map<String, Object> getSchemaAndPhases_DivHeadVerifyRR_4(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups) {
+        return processService.getWorkItemSchemaAndPhases(process, id, taskId, "DivHeadVerifyRR", SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)));
     }
 
     @POST
-    @Path("/{id}/JRO_Verify_RR/{taskId}")
+    @Path("/{id}/JROVerifyRR/{taskId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
     @org.eclipse.microprofile.faulttolerance.Retry()
-    public RiskRegisterProcessModelOutput completeTask_JRO_Verify_RR_5(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("phase") @DefaultValue("complete") final String phase, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups, final riskregister.process.RiskRegisterProcess__E82B11A3_F055_4091_AB9E_6869B67ACE6E_TaskOutput model) {
+    public RiskRegisterProcessModelOutput completeTask_JROVerifyRR_5(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("phase") @DefaultValue("complete") final String phase, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups, final riskregister.process.RiskRegisterProcess__E82B11A3_F055_4091_AB9E_6869B67ACE6E_TaskOutput model) {
         return processService.transitionWorkItem(process, id, taskId, phase, SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)), model).orElseThrow(NotFoundException::new);
     }
 
     @PUT
-    @Path("/{id}/JRO_Verify_RR/{taskId}")
+    @Path("/{id}/JROVerifyRR/{taskId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
     @org.eclipse.microprofile.faulttolerance.Retry()
-    public riskregister.process.RiskRegisterProcess__E82B11A3_F055_4091_AB9E_6869B67ACE6E_TaskOutput saveTask_JRO_Verify_RR_5(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups, final riskregister.process.RiskRegisterProcess__E82B11A3_F055_4091_AB9E_6869B67ACE6E_TaskOutput model) {
+    public riskregister.process.RiskRegisterProcess__E82B11A3_F055_4091_AB9E_6869B67ACE6E_TaskOutput saveTask_JROVerifyRR_5(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups, final riskregister.process.RiskRegisterProcess__E82B11A3_F055_4091_AB9E_6869B67ACE6E_TaskOutput model) {
         return processService.setWorkItemOutput(process, id, taskId, SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)), model, riskregister.process.RiskRegisterProcess__E82B11A3_F055_4091_AB9E_6869B67ACE6E_TaskOutput::fromMap).orElseThrow(NotFoundException::new);
     }
 
     @POST
-    @Path("/{id}/JRO_Verify_RR/{taskId}/phases/{phase}")
+    @Path("/{id}/JROVerifyRR/{taskId}/phases/{phase}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
     @org.eclipse.microprofile.faulttolerance.Retry()
-    public RiskRegisterProcessModelOutput taskTransition_JRO_Verify_RR_5(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @PathParam("phase") final String phase, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups, final riskregister.process.RiskRegisterProcess__E82B11A3_F055_4091_AB9E_6869B67ACE6E_TaskOutput model) {
+    public RiskRegisterProcessModelOutput taskTransition_JROVerifyRR_5(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @PathParam("phase") final String phase, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups, final riskregister.process.RiskRegisterProcess__E82B11A3_F055_4091_AB9E_6869B67ACE6E_TaskOutput model) {
         return processService.transitionWorkItem(process, id, taskId, phase, SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)), model).orElseThrow(NotFoundException::new);
     }
 
     @GET
-    @Path("/{id}/JRO_Verify_RR/{taskId}")
+    @Path("/{id}/JROVerifyRR/{taskId}")
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
     @org.eclipse.microprofile.faulttolerance.Retry()
-    public riskregister.process.RiskRegisterProcess__E82B11A3_F055_4091_AB9E_6869B67ACE6E_TaskModel getWorkItem_JRO_Verify_RR_5(@PathParam("id") String id, @PathParam("taskId") String taskId, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups) {
+    public riskregister.process.RiskRegisterProcess__E82B11A3_F055_4091_AB9E_6869B67ACE6E_TaskModel getWorkItem_JROVerifyRR_5(@PathParam("id") String id, @PathParam("taskId") String taskId, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups) {
         return processService.getWorkItem(process, id, taskId, SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)), riskregister.process.RiskRegisterProcess__E82B11A3_F055_4091_AB9E_6869B67ACE6E_TaskModel::from).orElseThrow(NotFoundException::new);
     }
 
     @DELETE
-    @Path("/{id}/JRO_Verify_RR/{taskId}")
+    @Path("/{id}/JROVerifyRR/{taskId}")
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
     @org.eclipse.microprofile.faulttolerance.Retry()
-    public RiskRegisterProcessModelOutput abortTask_JRO_Verify_RR_5(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("phase") @DefaultValue("abort") final String phase, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups) {
+    public RiskRegisterProcessModelOutput abortTask_JROVerifyRR_5(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("phase") @DefaultValue("abort") final String phase, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups) {
         return processService.transitionWorkItem(process, id, taskId, phase, SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)), null).orElseThrow(NotFoundException::new);
     }
 
     @GET
-    @Path("JRO_Verify_RR/schema")
+    @Path("JROVerifyRR/schema")
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
     @org.eclipse.microprofile.faulttolerance.Retry()
-    public Map<String, Object> getSchema_JRO_Verify_RR_5() {
-        return JsonSchemaUtil.load(this.getClass().getClassLoader(), process.id(), "JRO_Verify_RR");
+    public Map<String, Object> getSchema_JROVerifyRR_5() {
+        return JsonSchemaUtil.load(this.getClass().getClassLoader(), process.id(), "JROVerifyRR");
     }
 
     @GET
-    @Path("/{id}/JRO_Verify_RR/{taskId}/schema")
+    @Path("/{id}/JROVerifyRR/{taskId}/schema")
     @Produces(MediaType.APPLICATION_JSON)
     @jakarta.transaction.Transactional()
     @org.eclipse.microprofile.faulttolerance.Retry()
-    public Map<String, Object> getSchemaAndPhases_JRO_Verify_RR_5(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups) {
-        return processService.getWorkItemSchemaAndPhases(process, id, taskId, "JRO_Verify_RR", SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)));
+    public Map<String, Object> getSchemaAndPhases_JROVerifyRR_5(@PathParam("id") final String id, @PathParam("taskId") final String taskId, @QueryParam("user") final String user, @QueryParam("group") final List<String> groups) {
+        return processService.getWorkItemSchemaAndPhases(process, id, taskId, "JROVerifyRR", SecurityPolicy.of(identityProviderFactory.getOrImpersonateIdentity(user, groups)));
     }
 
     @POST

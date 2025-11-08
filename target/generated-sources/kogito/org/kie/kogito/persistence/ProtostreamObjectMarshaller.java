@@ -47,6 +47,8 @@ public class ProtostreamObjectMarshaller implements ObjectMarshallerStrategy {
             context.registerMarshaller(new org.jbpm.flow.serialization.marshaller.LongProtostreamBaseMarshaller());
             context.registerMarshaller(new org.jbpm.flow.serialization.marshaller.InstantProtostreamBaseMarshaller());
             context.registerMarshaller(new org.jbpm.flow.serialization.marshaller.SerializableProtostreamBaseMarshaller());
+            context.registerMarshaller(new org.kie.kogito.app.ApprovalMessageMarshaller());
+            context.registerMarshaller(new org.kie.kogito.app.ApprovalLogMessageMarshaller());
             context.registerMarshaller(new org.kie.kogito.app.PrimaryRiskInfoMessageMarshaller());
             context.registerMarshaller(new org.kie.kogito.app.ReasonMessageMarshaller());
             context.registerMarshaller(new org.kie.kogito.app.ResidualRiskMessageMarshaller());

@@ -26,19 +26,21 @@ import org.kie.kogito.UserTask;
 import org.kie.kogito.UserTaskParam.ParamType;
 import org.kie.kogito.UserTaskParam;
 
-@UserTask(taskName = "Maker Submit RR", processName = "RiskRegisterProcess")
+@UserTask(taskName = "MakerSubmitRR", processName = "RiskRegisterProcess")
 public class RiskRegisterProcess__DB6511C3_530F_4D9B_B789_1D8DC62AEE70_TaskOutput implements MapOutput {
 
     @Override
     public Map<String, Object> toMap() {
         Map<String, Object> params = new HashMap<>();
         params.put("riskRegister", this.riskRegister);
+        params.put("approval", this.approval);
         return params;
     }
 
     public static RiskRegisterProcess__DB6511C3_530F_4D9B_B789_1D8DC62AEE70_TaskOutput fromMap(Map<String, Object> params) {
         riskregister.process.RiskRegisterProcess__DB6511C3_530F_4D9B_B789_1D8DC62AEE70_TaskOutput result = new RiskRegisterProcess__DB6511C3_530F_4D9B_B789_1D8DC62AEE70_TaskOutput();
         result.riskRegister = (riskregister.model.RiskRegister) params.get("riskRegister");
+        result.approval = (riskregister.model.Approval) params.get("approval");
         return result;
     }
 
@@ -51,5 +53,16 @@ public class RiskRegisterProcess__DB6511C3_530F_4D9B_B789_1D8DC62AEE70_TaskOutpu
 
     public void setRiskRegister(riskregister.model.RiskRegister riskRegister) {
         this.riskRegister = riskRegister;
+    }
+
+    @UserTaskParam(value = ParamType.OUTPUT)
+    private riskregister.model.Approval approval;
+
+    public riskregister.model.Approval getApproval() {
+        return approval;
+    }
+
+    public void setApproval(riskregister.model.Approval approval) {
+        this.approval = approval;
     }
 }

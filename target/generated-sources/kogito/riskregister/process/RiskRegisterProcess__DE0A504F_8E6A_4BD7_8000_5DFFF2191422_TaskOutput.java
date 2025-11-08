@@ -23,18 +23,46 @@ import java.util.Map;
 import org.kie.kogito.MapOutput;
 //Task output for user task 'Div Head Verify RR' in process 'RiskRegisterProcess'
 import org.kie.kogito.UserTask;
+import org.kie.kogito.UserTaskParam.ParamType;
+import org.kie.kogito.UserTaskParam;
 
-@UserTask(taskName = "Div Head Verify RR", processName = "RiskRegisterProcess")
+@UserTask(taskName = "DivHeadVerifyRR", processName = "RiskRegisterProcess")
 public class RiskRegisterProcess__DE0A504F_8E6A_4BD7_8000_5DFFF2191422_TaskOutput implements MapOutput {
 
     @Override
     public Map<String, Object> toMap() {
         Map<String, Object> params = new HashMap<>();
+        params.put("riskRegister", this.riskRegister);
+        params.put("approval", this.approval);
         return params;
     }
 
     public static RiskRegisterProcess__DE0A504F_8E6A_4BD7_8000_5DFFF2191422_TaskOutput fromMap(Map<String, Object> params) {
         riskregister.process.RiskRegisterProcess__DE0A504F_8E6A_4BD7_8000_5DFFF2191422_TaskOutput result = new RiskRegisterProcess__DE0A504F_8E6A_4BD7_8000_5DFFF2191422_TaskOutput();
+        result.riskRegister = (riskregister.model.RiskRegister) params.get("riskRegister");
+        result.approval = (riskregister.model.Approval) params.get("approval");
         return result;
+    }
+
+    @UserTaskParam(value = ParamType.OUTPUT)
+    private riskregister.model.RiskRegister riskRegister;
+
+    public riskregister.model.RiskRegister getRiskRegister() {
+        return riskRegister;
+    }
+
+    public void setRiskRegister(riskregister.model.RiskRegister riskRegister) {
+        this.riskRegister = riskRegister;
+    }
+
+    @UserTaskParam(value = ParamType.OUTPUT)
+    private riskregister.model.Approval approval;
+
+    public riskregister.model.Approval getApproval() {
+        return approval;
+    }
+
+    public void setApproval(riskregister.model.Approval approval) {
+        this.approval = approval;
     }
 }
