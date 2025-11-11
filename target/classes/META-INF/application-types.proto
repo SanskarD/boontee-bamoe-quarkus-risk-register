@@ -63,3 +63,6 @@ message RiskRegister {
 	optional RiskCategory riskCategory = 4; 
 	optional RiskControlMeasure riskControlMeasure = 5; 
 }
+message RiskRegisterFactory { 
+	option java_package = "riskregister.model";
+}

@@ -30,6 +30,7 @@ public class RiskRegisterProcess__DE0A504F_8E6A_4BD7_8000_5DFFF2191422_TaskInput
     public static RiskRegisterProcess__DE0A504F_8E6A_4BD7_8000_5DFFF2191422_TaskInput fromMap(Map<String, Object> params) {
         RiskRegisterProcess__DE0A504F_8E6A_4BD7_8000_5DFFF2191422_TaskInput item = new RiskRegisterProcess__DE0A504F_8E6A_4BD7_8000_5DFFF2191422_TaskInput();
         item.riskRegister = (riskregister.model.RiskRegister) params.get("riskRegister");
+        item.approval = (riskregister.model.Approval) params.get("approval");
         item.approvalLog = (riskregister.model.ApprovalLog) params.get("approvalLog");
         return item;
     }
@@ -43,6 +44,17 @@ public class RiskRegisterProcess__DE0A504F_8E6A_4BD7_8000_5DFFF2191422_TaskInput
 
     public void setRiskRegister(riskregister.model.RiskRegister riskRegister) {
         this.riskRegister = riskRegister;
+    }
+
+    @UserTaskParam(value = ParamType.INPUT)
+    private riskregister.model.Approval approval;
+
+    public riskregister.model.Approval getApproval() {
+        return approval;
+    }
+
+    public void setApproval(riskregister.model.Approval approval) {
+        this.approval = approval;
     }
 
     @UserTaskParam(value = ParamType.INPUT)

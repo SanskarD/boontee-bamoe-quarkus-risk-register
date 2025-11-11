@@ -55,6 +55,7 @@ public class ProtostreamObjectMarshaller implements ObjectMarshallerStrategy {
             context.registerMarshaller(new org.kie.kogito.app.RiskCategoryMessageMarshaller());
             context.registerMarshaller(new org.kie.kogito.app.RiskControlMeasureMessageMarshaller());
             context.registerMarshaller(new org.kie.kogito.app.RiskRegisterMessageMarshaller());
+            context.registerMarshaller(new org.kie.kogito.app.RiskRegisterFactoryMessageMarshaller());
         } catch (IOException e) {
         }
     }

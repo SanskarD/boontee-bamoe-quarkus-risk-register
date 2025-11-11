@@ -112,6 +112,10 @@ message RiskRegister {
 	optional RiskControlMeasure riskControlMeasure = 5; 
 }
 /* @Indexed */ 
+message RiskRegisterFactory { 
+	option java_package = "riskregister.model";
+}
+/* @Indexed */ 
 message RiskRegisterProcess { 
 	option java_package = "riskregister.process";
 	/* @Field(index = Index.YES, store = Store.YES) @SortableField
@@ -139,28 +143,16 @@ message RiskRegisterProcess {
 	optional string makerUser = 8; 
 	/* @Field(index = Index.YES, store = Store.YES) @SortableField
  @VariableInfo(tags="") */ 
-	optional PrimaryRiskInfo primaryRiskInfo = 9; 
+	optional RiskRegister riskRegister = 9; 
 	/* @Field(index = Index.YES, store = Store.YES) @SortableField
  @VariableInfo(tags="") */ 
-	optional Reason reason = 10; 
+	optional RiskRegisterFactory riskRegisterFactory = 10; 
 	/* @Field(index = Index.YES, store = Store.YES) @SortableField
  @VariableInfo(tags="") */ 
-	optional ResidualRisk residualRisk = 11; 
+	optional string rmdUsers = 11; 
 	/* @Field(index = Index.YES, store = Store.YES) @SortableField
  @VariableInfo(tags="") */ 
-	optional RiskCategory riskCategory = 12; 
-	/* @Field(index = Index.YES, store = Store.YES) @SortableField
- @VariableInfo(tags="") */ 
-	optional RiskControlMeasure riskControlMeasure = 13; 
-	/* @Field(index = Index.YES, store = Store.YES) @SortableField
- @VariableInfo(tags="") */ 
-	optional RiskRegister riskRegister = 14; 
-	/* @Field(index = Index.YES, store = Store.YES) @SortableField
- @VariableInfo(tags="") */ 
-	optional string rmdUsers = 15; 
-	/* @Field(index = Index.YES, store = Store.YES) @SortableField
- @VariableInfo(tags="") */ 
-	optional string sroUsers = 16; 
+	optional string sroUsers = 12; 
 	/* @Field(index = Index.YES, store = Store.YES) @SortableField */ 
-	optional org.kie.kogito.index.model.KogitoMetadata metadata = 17; 
+	optional org.kie.kogito.index.model.KogitoMetadata metadata = 13; 
 }

@@ -14,8 +14,8 @@ import {
 	InputGroup,
 	TimePicker,	
 	Tabs,
- 	Tab,
- 	TabTitleText,
+	Tab,
+	TabTitleText,
 	Table,
 	Thead,
 	Tbody,
@@ -26,7 +26,7 @@ import {
 } from '@patternfly/react-core';
 import logo from '/resources/images/rbi_logo.jpeg'; // Import the image
 import { PlusCircleIcon, MinusCircleIcon } from '@patternfly/react-icons';
-const Form__RiskRegisterProcess_MakerSubmitRR: React.FC<any> = (props: any) => {
+const Form__RiskRegisterProcess_RMD_Verify_RR: React.FC<any> = (props: any) => {
 	const [formApi, setFormApi] = useState<any>();
 	const [approvalLog__approvals, set__approvalLog__approvals] = useState<
 		object[]
@@ -171,15 +171,6 @@ const Form__RiskRegisterProcess_MakerSubmitRR: React.FC<any> = (props: any) => {
 		);
 		set__riskRegister__reason__comments(
 			data?.riskRegister?.reason?.comments ?? ''
-		);
-		set__riskRegister__reason__reasons(
-			data?.riskRegister?.reason?.reasons ?? ''
-		);
-		set__riskRegister__residualRisk__financialRisk(
-			data?.riskRegister?.residualRisk?.financialRisk ?? ''
-		);
-		set__riskRegister__residualRisk__likelihoodScale(
-			data?.riskRegister?.residualRisk?.likelihoodScale ?? ''
 		);
 		set__riskRegister__residualRisk__reputationalRiskImpact(
 			data?.riskRegister?.residualRisk?.reputationalRiskImpact ?? ''
@@ -334,14 +325,14 @@ const Form__RiskRegisterProcess_MakerSubmitRR: React.FC<any> = (props: any) => {
 	useEffect(() => {
 		if (formApi) {
 			/*
-        Form Lifecycle Hook that will be executed before the form is submitted.
-        Throwing an error will stop the form submit. Usually should be used to validate the form.
-      */
+		Form Lifecycle Hook that will be executed before the form is submitted.
+		Throwing an error will stop the form submit. Usually should be used to validate the form.
+	  */
 			formApi.beforeSubmit = () => validateForm();
 			/*
-        Form Lifecycle Hook that will be executed after the form is submitted.
-        It will receive a response object containing the `type` flag indicating if the submit has been successful and `info` with extra information about the submit result.
-      */
+		Form Lifecycle Hook that will be executed after the form is submitted.
+		It will receive a response object containing the `type` flag indicating if the submit has been successful and `info` with extra information about the submit result.
+	  */
 			formApi.afterSubmit = (result) => afterSubmit(result);
 			/* Generates the expected form output object to be posted */
 			formApi.getFormData = () => getFormData();
@@ -349,17 +340,33 @@ const Form__RiskRegisterProcess_MakerSubmitRR: React.FC<any> = (props: any) => {
 	}, [getFormData, validateForm, afterSubmit]);
 	useEffect(() => {
 		/*
-      Call to the Kogito console form engine. It will establish the connection with the console embeding the form
-      and return an instance of FormAPI that will allow hook custom code into the form lifecycle.
-      The `window.Form.openForm` call expects an object with the following entries:
-        - onOpen: Callback that will be called after the connection with the console is established. The callback
-        will receive the following arguments:
-          - data: the data to be bound into the form
-          - ctx: info about the context where the form is being displayed. This will contain information such as the form JSON Schema, process/task, user...
-    */
+	  Call to the Kogito console form engine. It will establish the connection with the console embeding the form
+	  and return an instance of FormAPI that will allow hook custom code into the form lifecycle.
+	  The `window.Form.openForm` call expects an object with the following entries:
+		- onOpen: Callback that will be called after the connection with the console is established. The callback
+		will receive the following arguments:
+		  - data: the data to be bound into the form
+		  - ctx: info about the context where the form is being displayed. This will contain information such as the form JSON Schema, process/task, user...
+	*/
 		const api = window.Form.openForm({
 			onOpen: (data, context) => {
 				setFormData(data);
+    const assignedUser =
+      context?.user?.id ??
+      context?.user?.username ??
+      context?.task?.assignee ??
+      context?.task?.actualOwner ??
+      context?.assignee ??
+      null;
+
+    if (assignedUser) {
+      set__approval__userId(String(assignedUser));
+      console.info('assigned user detected:', assignedUser);
+    } else {
+      console.info('no assigned user found in context — inspect context object:', context);
+    }		
+
+
 			},
 		});
 		setFormApi(api);
@@ -399,11 +406,11 @@ const Form__RiskRegisterProcess_MakerSubmitRR: React.FC<any> = (props: any) => {
 				<CardBody className='pf-v5-c-form'>
 <div class="show-light">
   <img
-    class="pf-v6-c-brand"
-    src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Reserve_Bank_of_India_logo.svg/976px-Reserve_Bank_of_India_logo.svg.png?20220727071531"
-    alt="PatternFly logo"
+	class="pf-v6-c-brand"
+	src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Reserve_Bank_of_India_logo.svg/976px-Reserve_Bank_of_India_logo.svg.png?20220727071531"
+	alt="PatternFly logo"
 	widths={{ default: '100px' }}
-    heights={{ default: '30px' }}q
+	heights={{ default: '30px' }}q
   />
 </div>
 					<label>
@@ -1080,15 +1087,16 @@ const Form__RiskRegisterProcess_MakerSubmitRR: React.FC<any> = (props: any) => {
 						fieldId={'uniforms-0002-0005'}
 						label={'Status'}
 						isRequired={false}>
-						<TextInput
+						<select
 							name={'approval.status'}
 							id={'uniforms-0002-0005'}
-							isDisabled={false}
-							placeholder={''}
-							type={'text'}
-							value={approval__status}
-							onChange={(e, newValue) => set__approval__status(newValue)}
-						/>
+							value={approval__status ?? ''}
+							onChange={(e) => set__approval__status((e.target as HTMLSelectElement).value)}
+							className={'pf-c-form-control'}>
+							<option value={''}>Select an option</option>
+							<option value={'APPROVE'}>APPROVE</option>
+							<option value={'REJECT'}>REJECT</option>
+						</select>
 					</FormGroup>
 					<FormGroup
 						fieldId={'uniforms-0002-0006'}
@@ -1114,23 +1122,23 @@ const Form__RiskRegisterProcess_MakerSubmitRR: React.FC<any> = (props: any) => {
 <div>
 <table class="pf-v5-c-table" role="grid" aria-label="Audit log">
   <thead>
-    <tr>
-      <th scope="col">User ID</th>
-      <th scope="col">Status</th>
-      <th scope="col">Comment</th>
-      <th scope="col">Date</th>
-    </tr>
+	<tr>
+	  <th scope="col">User ID</th>
+	  <th scope="col">Status</th>
+	  <th scope="col">Comment</th>
+	  <th scope="col">Date</th>
+	</tr>
   </thead>
   <tbody>
-                              {approvalLog__approvals?.map((_, itemIndex) => (
-    <tr>
-      <td data-label="User ID">{approvalLog__approvals?.[itemIndex].userId}</td>
-      <td data-label="Status">{approvalLog__approvals?.[itemIndex].status}</td>
-      <td data-label="Comment">{approvalLog__approvals?.[itemIndex].comment}</td>
-      <td data-label="Date">{approvalLog__approvals?.[itemIndex].date}</td>
+							  {approvalLog__approvals?.map((_, itemIndex) => (
+	<tr>
+	  <td data-label="User ID">{approvalLog__approvals?.[itemIndex].userId}</td>
+	  <td data-label="Status">{approvalLog__approvals?.[itemIndex].status}</td>
+	  <td data-label="Comment">{approvalLog__approvals?.[itemIndex].comment}</td>
+	  <td data-label="Date">{approvalLog__approvals?.[itemIndex].date}</td>
 
-    </tr>
-                  ))}
+	</tr>
+				  ))}
   </tbody>
 </table>
 
@@ -1161,4 +1169,5 @@ const Form__RiskRegisterProcess_MakerSubmitRR: React.FC<any> = (props: any) => {
 		</div>
 	);
 };
-export default Form__RiskRegisterProcess_MakerSubmitRR;
+export default Form__RiskRegisterProcess_RMD_Verify_RR;
+

@@ -1,8 +1,9 @@
 riskregister/model/Reason.class
-riskregister/model/ResidualRisk.class
-riskregister/model/RiskControlMeasure.class
 riskregister/model/RiskCategory.class
 riskregister/model/RiskRegister.class
 riskregister/model/PrimaryRiskInfo.class
-riskregister/model/ApprovalLog.class
+riskregister/model/RiskRegisterFactory.class
 riskregister/model/Approval.class
+riskregister/model/ResidualRisk.class
+riskregister/model/RiskControlMeasure.class
+riskregister/model/ApprovalLog.class

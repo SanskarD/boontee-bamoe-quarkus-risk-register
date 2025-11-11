@@ -4,10 +4,10 @@ import java.util.Date;
 
 public class Approval {
 
-    private String userId;
-    private String status;
-    private String comment;
-    private Date date;
+    private String userId = "";
+    private String status = "COMPLETE";
+    private String comment = "";
+    private Date date = new Date();
 
     public Approval() {
     }
